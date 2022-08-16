@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_04_220913) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_10_232905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,13 +22,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_220913) do
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
-  create_table "dates", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.string "task"
     t.date "date"
     t.bigint "calendar_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["calendar_id"], name: "index_dates_on_calendar_id"
+    t.index ["calendar_id"], name: "index_events_on_calendar_id"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
@@ -50,5 +50,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_220913) do
   end
 
   add_foreign_key "calendars", "users"
-  add_foreign_key "dates", "calendars"
+  add_foreign_key "events", "calendars"
 end
